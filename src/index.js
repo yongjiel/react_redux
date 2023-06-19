@@ -11,6 +11,10 @@ import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 
+// be careful, not hit the same type name of actions.js.
+// because now the products and count sharing the same
+// root reducers store.
+
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 //store.dispatch({ type: "INCREMENT" });  // this moves into component.
@@ -24,17 +28,18 @@ const store = createStore(rootReducers, applyMiddleware(thunk));
 // Provider is from react-redux.
 const BaseApp = () => (
   <Provider store={store}>
-    <Counter/>
-    <ProductList/>
+    <Counter />
+    <ProductList />
   </Provider>
 );
 
 function products() {
   let prods = [{ "id": "1",
-              "name": "product1"
-            },
+              "name": "product1"},
             { "id": "2",
-            "name": "product2"} ];
+            "name": "product2"},
+            { "id": "3",
+            "name": "product3"} ];
 
   let array = [];
   for(let i = 0; i < prods.length; i++) {
@@ -53,7 +58,7 @@ function products() {
 };
 
 const App = () =>(
-   <HashRouter basename="/">
+   <HashRouter>
     <Routes>
       <Route index path='/' element={ <BaseApp /> } />
       <Route path='/products' element={ products() } />

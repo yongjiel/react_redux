@@ -19,13 +19,19 @@ class ProductList extends React.Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-
+    let array = [];
+    if (typeof products != 'undefined' ){
+      array = products.map(product =>
+        <li key={product.id}>{product.name}</li>
+      );
+    }
     return (
+      <div>
+      <div> Here products go:</div>
       <ul>
-        {products.map(product =>
-          <li key={product.id}>{product.name}</li>
-        )}
+        {array}
       </ul>
+      </div>
     );
   }
 }

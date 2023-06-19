@@ -1,5 +1,10 @@
 //Reference https://daveceddia.com/where-fetch-data-redux/
 
+// be careful, not hit the same type name of actions.js.
+// because now the products and count sharing the same
+// root reducers store.
+
+
 export const FETCH_PRODUCTS_BEGIN   = 'FETCH_PRODUCTS_BEGIN';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
@@ -17,25 +22,35 @@ export const fetchProductsFailure = error => ({
   type: FETCH_PRODUCTS_FAILURE,
   payload: { error }
 });
-/*
+
 // TODO: add /products GET URL into project.
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsBegin());
-    return fetch("www.reddit.com/r/reactjs.json")
-      .then(res => res.json())
+    /// be careful of json file below, the format and '/n', empty
+    // spaces can cause a lot of issues to cause res.json() failed.
+    return fetch(`/products/products.json`
+            ,{
+              headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+              }
+            })
+      .then(res => {
+        return res.json()
+      })
       .then(json => {
         dispatch(fetchProductsSuccess(json.products));
         return json.products;
       })
       .catch(
         error => {
-          console.log("hhhhhhhh");
+          console.log("hhhhhhhh "  + error);
           dispatch(fetchProductsFailure(error))
         }
       );
   };
-} */
+}
 
 function getProducts() {
   return fetch("/products")
@@ -68,7 +83,7 @@ function fakeGetProducts() {
     );
   });
 }
-
+/*
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsBegin());
@@ -82,7 +97,7 @@ export function fetchProducts() {
       );
   };
 }
-
+*/
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {
   if (!response.ok) {
