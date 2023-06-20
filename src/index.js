@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
@@ -21,16 +22,47 @@ const store = createStore(rootReducers, applyMiddleware(thunk));
 // here to hook up data store to component. data store is hooked up to
 // rootReducers which contains reducer from counterReducer.js. Notice
 // Provider is from react-redux.
-const App = () => (
+const BaseApp = () => (
   <Provider store={store}>
     <Counter/>
     <ProductList/>
   </Provider>
 );
 
+function products() {
+  let prods = [{ "id": "1",
+              "name": "product1"
+            },
+            { "id": "2",
+            "name": "product2"} ];
 
+  let array = [];
+  for(let i = 0; i < prods.length; i++) {
+    array.push(
+      <li key={i} > {prods[i].name} </li>
+    );
+  }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+  return (
+      <div>
+        <ul>
+        {array}
+        </ul>
+      </div>
+  );
+};
+
+const App = () =>(
+   <HashRouter basename="/">
+    <Routes>
+      <Route index path='/' element={ <BaseApp /> } />
+      <Route path='/products' element={ products() } />
+    </Routes>
+   </HashRouter>
+);
+
+//export default RootApp;
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
