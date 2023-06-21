@@ -27,10 +27,16 @@ const store = createStore(rootReducers, applyMiddleware(thunk));
 // rootReducers which contains reducer from counterReducer.js. Notice
 // Provider is from react-redux.
 const BaseApp = () => (
+  // be careful, in route /products. it is the hyperlink http://localhost:3001/#/products
+  <>
+  <a href="/#/products" rel="noreferrer">
+    /products route matches http://localhost:3001/#/products
+  </a>
   <Provider store={store}>
     <Counter />
     <ProductList />
   </Provider>
+  </>
 );
 
 function products() {
@@ -50,6 +56,7 @@ function products() {
 
   return (
       <div>
+        <a href="/" rel="noreferrer">Home</a>
         <ul>
         {array}
         </ul>
@@ -58,7 +65,7 @@ function products() {
 };
 
 const App = () =>(
-   <HashRouter>
+   <HashRouter basename='/'>
     <Routes>
       <Route index path='/' element={ <BaseApp /> } />
       <Route path='/products' element={ products() } />

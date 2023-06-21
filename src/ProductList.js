@@ -27,7 +27,7 @@ class ProductList extends React.Component {
     }
     return (
       <div>
-      <div> Here products go:</div>
+      <div> <h2>Here products go:</h2></div>
       <ul>
         {array}
       </ul>
