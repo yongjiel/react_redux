@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import NoPage from './nopage';
+import './my_sass.scss';
 
 // be careful, not hit the same type name of actions.js.
 // because now the products and count sharing the same
@@ -62,7 +63,7 @@ function products() {
       <div>
         <a href="/" rel="noreferrer">Home</a><br/><br/>
         <a href="/productsssssssss" rel="noreferrer"> 404 no page</a><br/>
-        <h1> 3 Products</h1>
+        <h2> 3 Products</h2>
         <ul>
         {array}
         </ul>
@@ -70,7 +71,7 @@ function products() {
   );
 };
 // be careful of diff of BrowserRouter and HashRouter. HashRouter is with /#/
-// BrowserRouter without /#/
+// BrowserRouter without /#/, chatGPT : react-router-dom why there is /#/?
 const App = () =>(
    <BrowserRouter basename='/' exact>
     <Routes>
