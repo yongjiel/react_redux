@@ -34,7 +34,10 @@ export function fetchProducts() {
               headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-              }
+              },
+              // credentials: 'omit'
+              // credentials: 'include'     // for CORS
+              credentials: 'same-origin'
             })
       .then(res => {
         return res.json()

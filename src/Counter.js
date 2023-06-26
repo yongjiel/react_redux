@@ -22,6 +22,7 @@ function mapStateToProps(state) {
 
 class Counter extends React.Component {
   componentDidMount() {
+    //this.props.history.push('/foo');
     this.props.reset(); // from the last line . reset is from action.js
   }
   

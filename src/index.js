@@ -10,6 +10,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import NoPage from './nopage';
 
 // be careful, not hit the same type name of actions.js.
 // because now the products and count sharing the same
@@ -29,9 +30,12 @@ const store = createStore(rootReducers, applyMiddleware(thunk));
 const BaseApp = () => (
   // be careful, in route /products. it is the hyperlink http://localhost:3001/#/products
   <>
-  <a href="/#/products" rel="noreferrer">
-    /products route matches http://localhost:3001/#/products
-  </a>
+  <a href="/products" rel="noreferrer">
+    /products route matches /products, be careful of diff of BrowserRouter and HashRouter. <br/>
+    HashRouter is with /#/. <br/>
+    BrowserRouter without /#/
+  </a><br/><br/>
+  <a href="/productssssssssss" rel="noreferrer"> 404 no page</a>
   <Provider store={store}>
     <Counter />
     <ProductList />
@@ -56,21 +60,27 @@ function products() {
 
   return (
       <div>
-        <a href="/" rel="noreferrer">Home</a>
+        <a href="/" rel="noreferrer">Home</a><br/><br/>
+        <a href="/productsssssssss" rel="noreferrer"> 404 no page</a><br/>
+        <h1> 3 Products</h1>
         <ul>
         {array}
         </ul>
       </div>
   );
 };
-
+// be careful of diff of BrowserRouter and HashRouter. HashRouter is with /#/
+// BrowserRouter without /#/
 const App = () =>(
-   <HashRouter basename='/'>
+   <BrowserRouter basename='/' exact>
     <Routes>
-      <Route index path='/' element={ <BaseApp /> } />
-      <Route path='/products' element={ products() } />
+      <Route >
+         <Route index path='/'element={<BaseApp />} exact />
+         <Route path='/products/' element={ products() } exact />
+         <Route path="*" element={<NoPage />} status={404} />
+      </Route>
     </Routes>
-   </HashRouter>
+   </BrowserRouter>
 );
 
 //export default RootApp;
