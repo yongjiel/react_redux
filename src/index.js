@@ -9,7 +9,8 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import { useParams } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import NoPage from './nopage';
 import './my_sass.scss';
 
@@ -28,23 +29,27 @@ const store = createStore(rootReducers, applyMiddleware(thunk));
 // here to hook up data store to component. data store is hooked up to
 // rootReducers which contains reducer from counterReducer.js. Notice
 // Provider is from react-redux.
-const BaseApp = () => (
+const BaseApp = () => {
+  const second_url = "/products/abc";
+  const url_404 = "/productssssssssss";
   // be careful, in route /products. it is the hyperlink http://localhost:3001/#/products
-  <>
-  <a href="/products" rel="noreferrer">
-    /products route matches /products, be careful of diff of BrowserRouter and HashRouter. <br/>
-    HashRouter is with /#/. <br/>
-    BrowserRouter without /#/
-  </a><br/><br/>
-  <a href="/productssssssssss" rel="noreferrer"> 404 no page</a>
-  <Provider store={store}>
-    <Counter />
-    <ProductList />
-  </Provider>
-  </>
-);
+  return (
+      <>
+      <a href={second_url} rel="noreferrer">
+        /products route matches {second_url}, be careful of diff of BrowserRouter and HashRouter. <br/>
+        HashRouter is with /#/. <br/>
+        BrowserRouter without /#/
+      </a><br/><br/>
+      <a href={url_404} rel="noreferrer"> 404 no page</a>
+      <Provider store={store}>
+        <Counter />
+        <ProductList />
+      </Provider>
+      </>);
+};
 
-function products() {
+const Products = () => {
+  const { name } = useParams();
   let prods = [{ "id": "1",
               "name": "product1"},
             { "id": "2",
@@ -53,6 +58,12 @@ function products() {
             "name": "product3"} ];
 
   let array = [];
+  console.log("llllllll "+ name);
+  if (name) {
+    array.push(<li key="pname" > {name} </li>);
+  } else {
+    array.push(<li key="pname" > name param is empty</li>);
+  }
   for(let i = 0; i < prods.length; i++) {
     array.push(
       <li key={i} > {prods[i].name} </li>
@@ -77,7 +88,8 @@ const App = () =>(
     <Routes>
       <Route >
          <Route index path='/'element={<BaseApp />} exact />
-         <Route path='/products/' element={ products() } exact />
+         <Route path='/products' element={ <Products /> } exact />
+         <Route path='/products/:name' element={ <Products /> } exact />
          <Route path="*" element={<NoPage />} status={404} />
       </Route>
     </Routes>
