@@ -29,7 +29,9 @@ export function fetchProducts() {
     dispatch(fetchProductsBegin());
     /// be careful of json file below, the format and '/n', empty
     // spaces can cause a lot of issues to cause res.json() failed.
-    return fetch(`/products/products.json`
+    // "https://jsonplaceholder.typicode.com/todos"
+    // `/products/products.json`, update down there json to json.product line 48, 49
+    return fetch("https://jsonplaceholder.typicode.com/todos"
             ,{
               headers: {
                 'Content-type': 'application/json',
@@ -43,8 +45,8 @@ export function fetchProducts() {
         return res.json()
       })
       .then(json => {
-        dispatch(fetchProductsSuccess(json.products));
-        return json.products;
+        dispatch(fetchProductsSuccess(json));
+        return json;
       })
       .catch(
         error => {

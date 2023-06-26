@@ -11,7 +11,7 @@ class ProductList extends React.Component {
 
   render() {
     const { products, loading, error } = this.props;
-
+    const w = 100;  // check out how to use this w in line 25;
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -22,7 +22,7 @@ class ProductList extends React.Component {
     let array = [];
     if (typeof products != 'undefined' ){
       array = products.map(product =>
-        <li key={product.id}>{product.name}</li>
+        <li key={product.userid}><table><td style={{width: w}}>{product.id}</td><td>{product.title}</td></table></li>
       );
     }
     return (
