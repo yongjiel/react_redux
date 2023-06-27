@@ -15,7 +15,7 @@ export const fetchProductsBegin = () => ({
 
 export const fetchProductsSuccess = products => ({
   type: FETCH_PRODUCTS_SUCCESS,
-  payload: { products }
+  payload: { products }  //  { products } will create { products:  products}
 });
 
 export const fetchProductsFailure = error => ({

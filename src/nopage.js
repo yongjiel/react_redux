@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const NoPage = (props) => {
-    const second_url = "/products/abc";
+    const second_url = "/products";
     return (
     <>
         <a href="/" rel="noreferrer">Home</a><br/><br/>
@@ -12,7 +12,7 @@ const NoPage = (props) => {
         BrowserRouter without /#/
         </a><br/>
 
-    <div><h1> No this URL {props.url} </h1></div>
+    <div><h1> No this URL - {props.url} </h1></div>
     </>
  );
 };

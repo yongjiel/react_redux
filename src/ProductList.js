@@ -22,18 +22,20 @@ class ProductList extends React.Component {
     }
     let array = [];
     if ( !!products ){
-      array = products.map(product =>
-        <tr key={product.id}><td style={{width: w, color: c}}>{product.id}</td><td>{product.title}</td></tr>
+      array = products.map(p =>
+        <tr key={"tr_"+p.id}><td key={"id_" + p.id} style={{width: w, color: c}}>{p.id}</td>
+        <td  key={"title_"+ p.id}>{p.title}</td></tr>
       );
     }
+    //  has to pass down all lays of key={} , or console will complain.
     return (
       <div>
       <div> <h2>Here products go:</h2></div>
         <table>
-          <tbody>
-        <tr key="table_0"><th style={{width: w, color: c, fontStyle: "italic", textAlign: "left"}}>ID</th><th  style={{fontStyle: "italic", textAlign: "left"}}>TITLE</th></tr>
+          <tbody key="tb_1">
+        <tr key={'trh_0'}><th key="th_0" style={{width: w, color: c, fontStyle: "italic", textAlign: "left"}}>ID</th><th  key="th_1" style={{fontStyle: "italic", textAlign: "left"}}>TITLE</th></tr>
         </tbody>
-        <tbody>
+        <tbody  key="tb_2">
           {array}
         </tbody>
         </table>

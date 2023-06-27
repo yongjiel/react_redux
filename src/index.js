@@ -49,7 +49,7 @@ const BaseApp = () => {
 };
 
 const Products = () => {
-  const { name } = useParams();
+  let { name } = useParams();
   let prods = [{ "id": "1",
               "name": "product1"},
             { "id": "2",
@@ -62,7 +62,7 @@ const Products = () => {
   if (name) {
     array.push(<li key="pname" > {name} </li>);
   } else {
-    array.push(<li key="pname" > name param is empty</li>);
+    array.push(<li key="pname" > name param is empty </li>);
   }
   for(let i = 0; i < prods.length; i++) {
     array.push(
@@ -74,7 +74,7 @@ const Products = () => {
       <div>
         <a href="/" rel="noreferrer">Home</a><br/><br/>
         <a href="/productsssssssss" rel="noreferrer"> 404 no page</a><br/>
-        <h2> 3 Products</h2>
+        <h2> 3 Products | {name? "With URL param var": "With No param var"} </h2>
         <ul>
         {array}
         </ul>
