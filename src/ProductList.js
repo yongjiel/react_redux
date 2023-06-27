@@ -21,17 +21,22 @@ class ProductList extends React.Component {
       return <div>Loading...</div>;
     }
     let array = [];
-    if (typeof products != 'undefined' ){
+    if ( !!products ){
       array = products.map(product =>
-        <li key={product.userid}><table><td style={{width: w, color: c}}>{product.id}</td><td>{product.title}</td></table></li>
+        <tr key={product.id}><td style={{width: w, color: c}}>{product.id}</td><td>{product.title}</td></tr>
       );
     }
     return (
       <div>
       <div> <h2>Here products go:</h2></div>
-      <ul>
-        {array}
-      </ul>
+        <table>
+          <tbody>
+        <tr key="table_0"><th style={{width: w, color: c, fontStyle: "italic", textAlign: "left"}}>ID</th><th  style={{fontStyle: "italic", textAlign: "left"}}>TITLE</th></tr>
+        </tbody>
+        <tbody>
+          {array}
+        </tbody>
+        </table>
       </div>
     );
   }
