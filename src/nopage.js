@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const NoPage = () => {
+const NoPage = (props) => {
     const second_url = "/products/abc";
     return (
     <>
@@ -12,7 +12,7 @@ const NoPage = () => {
         BrowserRouter without /#/
         </a><br/>
 
-    <div><h1> No page component</h1></div>
+    <div><h1> No this URL {props.url} </h1></div>
     </>
  );
 };

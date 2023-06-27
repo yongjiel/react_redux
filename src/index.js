@@ -90,7 +90,7 @@ const App = () =>(
          <Route index path='/'element={<BaseApp />} exact />
          <Route path='/products' element={ <Products /> } exact />
          <Route path='/products/:name' element={ <Products /> } exact />
-         <Route path="*" element={<NoPage />} status={404} />
+         <Route path="*" element={<NoPage url={window.location.href} />} status={404} />
       </Route>
     </Routes>
    </BrowserRouter>
