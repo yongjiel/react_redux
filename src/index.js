@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Counter from './Counter';
-import ProductList from './ProductList';
+import Counter from './components/Counter';
+import ProductList from './components/ProductList';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducers from "./rootReducer";
 import { useParams } from "react-router-dom";
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
-import NoPage from './nopage';
+import NoPage from './components/nopage';
 import './my_sass.scss';
 
 // be careful, not hit the same type name of actions.js.

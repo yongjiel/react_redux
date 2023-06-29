@@ -3,8 +3,8 @@
 // root reducers store.
 
 import { combineReducers } from "redux";
-import productReducer from "./productReducer";
-import reducer from "./counterReducer";
+import productReducer from "./components/ProductList/productReducer";
+import reducer from "./components/Counter/counterReducer";
 
 const rootReducers =  combineReducers({
   reducer,

@@ -3,6 +3,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "./productActions";
+import './ProductList.scss';
+
 
 class ProductList extends React.Component {
   componentDidMount() {

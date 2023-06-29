@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './nopage.scss';
 
 const NoPage = (props) => {
     const second_url = "/products";

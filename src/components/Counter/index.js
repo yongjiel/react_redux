@@ -2,7 +2,7 @@ import React from 'react';
 import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { increment, decrement, reset } from './actions';
-
+import "./Counter.scss";
 /*
 const getProducts = state => state.products.itemsById;
 const getCartItemIds = state => state.currentUser.shoppingCart.itemIds;
